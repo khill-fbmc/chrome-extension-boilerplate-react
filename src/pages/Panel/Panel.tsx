@@ -1,5 +1,6 @@
-import React from 'react';
-import './Panel.css';
+import "./Panel.css";
+
+import React from "react";
 
 const Panel: React.FC = () => {
   return (

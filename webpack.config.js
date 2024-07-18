@@ -1,31 +1,25 @@
-const {
-  entryPaths,
-  outputPath,
-  htmlTemplates,
-} = require('./config/webpack/paths');
-const { commonPlugins, htmlPlugins } = require('./config/webpack/plugins');
-const { moduleRules, fileExtensions } = require('./config/webpack/rules');
-const { optimizationConfig } = require('./config/webpack/optimization');
+const { entryPaths, outputPath, htmlTemplates } = require("./config/webpack/paths");
+const { commonPlugins, htmlPlugins } = require("./config/webpack/plugins");
+const { moduleRules, fileExtensions } = require("./config/webpack/rules");
+const { optimizationConfig } = require("./config/webpack/optimization");
 
 const env = process.env.NODE_ENV;
-const isDevelopment = env !== 'production';
+const isDevelopment = env !== "production";
 
 module.exports = {
-  mode: env || 'development',
+  mode: env || "development",
   entry: entryPaths,
   output: {
-    filename: '[name].bundle.js',
+    filename: "[name].bundle.js",
     path: outputPath,
     clean: true,
-    publicPath: process.env.ASSET_PATH || '/',
+    publicPath: process.env.ASSET_PATH || "/",
   },
   module: {
     rules: moduleRules,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'].concat(
-      fileExtensions.map((ext) => `.${ext}`)
-    ),
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css", ".scss"].concat(fileExtensions.map((ext) => `.${ext}`)),
   },
   plugins: [
     ...commonPlugins, //
@@ -33,7 +27,7 @@ module.exports = {
   ],
   optimization: optimizationConfig(isDevelopment),
   infrastructureLogging: {
-    level: 'info',
+    level: "info",
   },
-  devtool: isDevelopment ? 'cheap-module-source-map' : false,
+  devtool: isDevelopment ? "cheap-module-source-map" : false,
 };

@@ -1,5 +1,6 @@
-import React from 'react';
-import './Options.css';
+import "./Options.css";
+
+import React from "react";
 
 interface Props {
   title: string;

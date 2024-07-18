@@ -1,36 +1,22 @@
-const ReactRefreshTypeScript = require('react-refresh-typescript');
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const ReactRefreshTypeScript = require("react-refresh-typescript");
 
-const fileExtensions = [
-  'jpg',
-  'jpeg',
-  'png',
-  'gif',
-  'eot',
-  'otf',
-  'svg',
-  'ttf',
-  'woff',
-  'woff2',
-];
+const isDevelopment = process.env.NODE_ENV !== "production";
+
+const fileExtensions = ["jpg", "jpeg", "png", "gif", "eot", "otf", "svg", "ttf", "woff", "woff2"];
 
 const moduleRules = [
   {
     test: /\.(css|scss)$/,
-    use: [
-      'style-loader',
-      'css-loader',
-      { loader: 'sass-loader', options: { sourceMap: true } },
-    ],
+    use: ["style-loader", "css-loader", { loader: "sass-loader", options: { sourceMap: true } }],
   },
   {
-    test: new RegExp(`.(${fileExtensions.join('|')})$`),
-    type: 'asset/resource',
+    test: new RegExp(`.(${fileExtensions.join("|")})$`),
+    type: "asset/resource",
     exclude: /node_modules/,
   },
   {
     test: /\.html$/,
-    loader: 'html-loader',
+    loader: "html-loader",
     exclude: /node_modules/,
   },
   {
@@ -38,7 +24,7 @@ const moduleRules = [
     exclude: /node_modules/,
     use: [
       {
-        loader: require.resolve('ts-loader'),
+        loader: require.resolve("ts-loader"),
         options: {
           getCustomTransformers: () => ({
             before: [isDevelopment && ReactRefreshTypeScript()].filter(Boolean),
@@ -51,13 +37,11 @@ const moduleRules = [
   {
     test: /\.(js|jsx)$/,
     use: [
-      'source-map-loader',
+      "source-map-loader",
       {
-        loader: require.resolve('babel-loader'),
+        loader: require.resolve("babel-loader"),
         options: {
-          plugins: [
-            isDevelopment && require.resolve('react-refresh/babel'),
-          ].filter(Boolean),
+          plugins: [isDevelopment && require.resolve("react-refresh/babel")].filter(Boolean),
         },
       },
     ],
